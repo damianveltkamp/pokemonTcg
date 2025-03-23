@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Provider as JotaiProvider } from "jotai";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { ReactNode } from "react";
+import { Header } from "@/components/Header/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,7 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Pokemon trading cards",
-  description: "Application that lets you browse pokemon trading cards",
+  description:
+    "Application that lets you browse pokemon trading cards, and lets you play who's that pokemon card game.",
 };
 
 type RootLayoutProps = {
@@ -30,7 +31,10 @@ const RootLayout = ({ children }: RootLayoutProps) => {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );

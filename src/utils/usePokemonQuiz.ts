@@ -2,11 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { shuffleArray } from "./shuffleArray";
 import { getRandomInt } from "./getRandomInt";
 import { CardResume } from "@tcgdex/sdk";
-import { tcgdex } from "./setupTCGDex";
-
-const getAllPokemonCards = () => {
-  return tcgdex.fetch("cards");
-};
+import { getAllPokemonCards } from "@/api/getAllPokemonCards";
 
 /**
  * This function initilizes the data required to display the
@@ -48,6 +44,7 @@ const initializePokemonQuizData = async () => {
   };
 };
 
+export const pokemonQuizQueryKey = "PokemonQuiz";
 export const pokemonQuizQueryFn = () => {
   const data = initializePokemonQuizData();
   return data;
@@ -55,7 +52,7 @@ export const pokemonQuizQueryFn = () => {
 
 export const usePokemonQuiz = () => {
   return useQuery({
-    queryKey: ["PokemonQuiz"],
+    queryKey: [pokemonQuizQueryKey],
     queryFn: pokemonQuizQueryFn,
   });
 };

@@ -1,12 +1,8 @@
-import { PokemonCardQuiz } from "@/features/PokemonCardQuiz";
+import { PokemonCardOverview } from "@/features/PokemonCardOverview";
+import { tcgdex } from "@/utils/setupTCGDex";
 
 const Home = async () => {
-  return (
-    <div>
-      Starting point
-      <PokemonCardQuiz />
-    </div>
-  );
+  return <PokemonCardOverview />;
 };
 
 export default Home;

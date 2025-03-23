@@ -1,11 +1,4 @@
-"use client";
-import { Provider as JotaiProvider } from "jotai";
-import { ReactNode } from "react";
-import {
-  isServer,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { isServer, QueryClient } from "@tanstack/react-query";
 
 function makeQueryClient() {
   return new QueryClient({
@@ -21,7 +14,7 @@ function makeQueryClient() {
 
 let browserQueryClient: QueryClient | undefined = undefined;
 
-function getQueryClient() {
+export function getQueryClient() {
   if (isServer) {
     // Server: always make a new query client
     return makeQueryClient();
@@ -34,13 +27,3 @@ function getQueryClient() {
     return browserQueryClient;
   }
 }
-
-export const Providers = ({ children }: { children: ReactNode }) => {
-  const queryClient = getQueryClient();
-
-  return (
-    <JotaiProvider>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    </JotaiProvider>
-  );
-};
